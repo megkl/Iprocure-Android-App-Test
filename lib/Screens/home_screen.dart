@@ -6,9 +6,7 @@ import 'package:iprocure_app/Models/product_model.dart';
 import 'package:iprocure_app/Screens/Category/category_list_screen.dart';
 import 'package:iprocure_app/Screens/product/add_product_screen.dart';
 import 'package:iprocure_app/helper/database_helper.dart';
-import 'package:iprocure_app/widgets/category_widget.dart';
 import 'package:iprocure_app/widgets/constants.dart';
-import 'package:iprocure_app/widgets/image_utility.dart';
 import 'package:iprocure_app/widgets/screen_navigation.dart';
 import 'package:iprocure_app/widgets/search_bar_widget.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
@@ -61,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Padding(
                 padding: EdgeInsets.all(20),
                 child: Text("Create new",
-                    style: TextStyle(color: Colors.amber, fontSize: 18)),
+                    style: TextStyle(color: Colors.amber, fontSize: 16)),
               ),
             )
           ],
@@ -119,7 +117,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
             //Categories
             Padding(
-              padding: const EdgeInsets.only(top: 30,),
+              padding: const EdgeInsets.only(
+                top: 50,
+              ),
               child: Container(
                 height: 80,
                 child: ListView.builder(
@@ -132,21 +132,24 @@ class _HomeScreenState extends State<HomeScreen> {
                           await dbHelper.getProductList();
 
                           setState(() {
+                            if (categoryList[index] != "All") {
+                              final Future<Database> dbFuture =
+                                  dbHelper.initializeDatabase();
+                              dbFuture.then((database) {
+                                Future<List<Product>> productListFuture =
+                                    dbHelper.getCategoryList(categoryList[index]);
+                                productListFuture.then((productList) {
+                                  setState(() {
+                                    this.productList = productList;
+                                    this.count = productList.length;
+                                  });
+                                });
+                              });
+                            } else {
+                              updateListView();
+                            }
                             tapped = index;
-                            // productList = productList
-                            //     .where((x) =>
-                            //         x.categoryName == categoryList[index])
-                            //     .toList();
-                            // if (productList == null) {
-                            //   productList = [];
-                            //   updateListView();
-                            // }
                           });
-                          // changeScreen(
-                          //     context,
-                          //     CategoryListScreen(
-                          //       categoryName: categoryList[index],
-                          //     ));
                         },
                         child: Container(
                           width: 110,
@@ -180,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             //Product List
             Padding(
-              padding: const EdgeInsets.only(top: 80),
+              padding: const EdgeInsets.only(top: 130),
               child: getProductList(),
             ),
           ],
@@ -196,72 +199,9 @@ class _HomeScreenState extends State<HomeScreen> {
           height: 180,
           child: Stack(
             children: <Widget>[
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  //height: 100,
-                  width: MediaQuery.of(context).size.width * .3,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                      image: DecorationImage(
-                        image: AssetImage("assets/ip3.jpg"),
-                        fit: BoxFit.contain,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 7,
-                          spreadRadius: 1,
-                          color: Colors.black12,
-                        )
-                      ]
-                      ),
-                  child: Stack(fit: StackFit.expand, children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.white,
-                            Colors.white,
-                            //Colors.black87,
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(
-                            20,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 0, left: 5, top: 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.all(6),
-                                child: Icon(
-                                  Icons.directions,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                                decoration: BoxDecoration(
-                                    color: Colors.black38,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(100),
-                                    )),
-                              )
-                            ],
-                          ),
-                        )),
-                  ]),
-                ),
-              ),
+              Padding(
+                  padding: EdgeInsets.only(right: 350, top: 30),
+                  child: Image.asset("assets/logo.png")),
               _buildDescription(context, position),
             ],
           ),
@@ -281,23 +221,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
                 borderRadius: BorderRadius.all(
                   Radius.circular(20),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 7,
-                    spreadRadius: 1,
-                    color: Colors.black12,
-                  )
-                ]),
+                ),),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                      "${(this.productList[position].productCode) + " - " + this.productList[position].productName + " - " + this.productList[position].quantity.toString() + this.productList[position].quantityTypeName}",
-                      style: descText),
+                      "${"(${this.productList[position].productCode})" + " - " + this.productList[position].productName + " - " + this.productList[position].quantity.toString() + this.productList[position].quantityTypeName}",
+                      style: listTitle),
                   Row(children: <Widget>[
-                    Text(this.productList[position].distributorName,
+                    Text(this.productList[position].manufacturerName,
                         style: headerNotesStyle)
                   ]),
                   Row(
@@ -306,8 +239,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text('Ksh ', style: listTitle),
                       Text(this.productList[position].unitCost.toString(),
                           style: listTitle),
+                      Text(" per unit",
+                          style: smallStyle)
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
                       Text("${this.productList[position].distributorName}",
-                          style: descText)
+                          style: smallStyle)
                     ],
                   ),
                 ])));

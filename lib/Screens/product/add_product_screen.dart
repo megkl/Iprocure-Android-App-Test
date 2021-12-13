@@ -6,7 +6,6 @@ import 'package:iprocure_app/Models/category_model.dart';
 import 'package:iprocure_app/Models/product_model.dart';
 import 'package:iprocure_app/helper/database_helper.dart';
 import 'package:iprocure_app/widgets/constants.dart';
-import 'package:iprocure_app/widgets/image_utility.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -73,15 +72,15 @@ class _AddProductScreenState extends State<AddProductScreen> {
         child: ListView(
           children: <Widget>[
             productNameTextField(),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
             productCodeTextField(),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
             categoryTextField(),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
             manufacturerTextField(),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
             distributorTextField(),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
            Row(
   mainAxisSize: MainAxisSize.min,
   children: <Widget>[
@@ -99,19 +98,19 @@ class _AddProductScreenState extends State<AddProductScreen> {
     ),
   ],
 ),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
             isVatEnabled(),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
             unitCostTextField(),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
             retailPriceTextField(),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
             agentPriceTextField(),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
             wholesalePriceTextField(),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
             productImage(),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
             addButton(),
           ],
         ),
@@ -147,12 +146,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 fillColor: Colors.grey.withOpacity(0.8),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: headerColor,
+                    color: Colors.orange,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: headerColor,
+                    color: Colors.orange,
                     width: 2,
                   ),
                 ),
@@ -606,16 +605,16 @@ Widget productImage() {
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: headerColor,
+              color: Colors.orange,
               width: 2,
             ),
           ),
           labelText: "Add Product Image",
-          labelStyle: TextStyle(color: headerColor),
+          labelStyle: TextStyle(color: Colors.orange),
           prefixIcon: IconButton(
             icon: Icon(
               iconphoto,
-              color: headerColor,
+              color: Colors.orange,
             ),
             onPressed:(){
               getImage(ImageSource.gallery);
@@ -703,11 +702,6 @@ Widget productImage() {
     showDialog(context: context, builder: (_) => alertDialog);
   }
 
-  pickImageFromGallery() {
-  ImagePicker.pickImage(source: ImageSource.gallery).then((imgFile) {
-    String imgString = ImageUtility.base64String(imgFile.readAsBytesSync());
-  });
-}
  void getImage(ImageSource imageSource) async {
    PickedFile _imageFile = await picker.getImage(source: imageSource);
     if (_imageFile == null) return;
@@ -719,7 +713,7 @@ Widget productImage() {
     tmpFile = await tmpFile.copy('$fileName');
 
     setState(() {
-      _image = ImageUtility.base64String(tmpFile.readAsBytesSync()) as File;
+      _image = tmpFile;
       iconphoto = Icons.check_box;
     });
   }

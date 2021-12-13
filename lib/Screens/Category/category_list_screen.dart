@@ -3,7 +3,6 @@ import 'package:iprocure_app/Models/product_model.dart';
 import 'package:iprocure_app/Screens/home_screen.dart';
 import 'package:iprocure_app/Screens/product/add_product_screen.dart';
 import 'package:iprocure_app/helper/database_helper.dart';
-import 'package:iprocure_app/widgets/category_widget.dart';
 import 'package:iprocure_app/widgets/constants.dart';
 import 'package:iprocure_app/widgets/screen_navigation.dart';
 import 'package:iprocure_app/widgets/search_bar_widget.dart';
