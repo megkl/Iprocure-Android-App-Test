@@ -20,11 +20,12 @@ Filtering of products by category is also done as shown:
 
 UNIT TESTS
 
-Implemented in the app_test file under test folder
+Implemented in the unit_test file under test folder
 
 Product List Feature
 
 Requirement: The product list page should display a list of products from our local db. Each product should show at least its product name and cost
 
 Actions: Mocking data models and classes by removing dependencies. Hardcode values for getproductList and not retrieve from database so that we can see how slow and unpredictable it will be:
+![image](https://github.com/megkl/iprocure_android_app_test/blob/main/assets/test1.PNG)
 
