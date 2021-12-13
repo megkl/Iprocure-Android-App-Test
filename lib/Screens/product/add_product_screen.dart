@@ -71,6 +71,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
         key: _globalkey,
         child: ListView(
           children: <Widget>[
+            qrCodeField(),
             productNameTextField(),
             SizedBox(height: 8),
             productCodeTextField(),
@@ -117,7 +118,35 @@ class _AddProductScreenState extends State<AddProductScreen> {
       ),
     );
   }
-
+  Widget qrCodeField(){
+     return Padding(
+       padding: const EdgeInsets.only(left: 230, right: 10),
+       child: Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey.withOpacity(0.2)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 25.0),
+                          child: Row(
+                            //crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Align(
+                                  child: Icon(Icons.qr_code_2_sharp,
+                                      color: Colors.grey.withOpacity(0.7),
+                                      size: 30)),
+                              SizedBox(width: 12),
+                              Text("Scan Details",
+                                  style: smallStyle),
+                            ],
+                          ),
+                        ),
+                      ),
+     );
+                    
+  }
+     
   Widget productNameTextField() {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -405,7 +434,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
       title: const Text('Vat 16%',
           textAlign: TextAlign.left,
           style: TextStyle(
-            fontSize: 15,
+            fontSize: 18,
             fontWeight: FontWeight.w500,
             color: Colors.black38
       )),

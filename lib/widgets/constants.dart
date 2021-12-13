@@ -12,7 +12,7 @@ var headerNotesStyle = GoogleFonts.poppins(
             fontWeight: FontWeight.w500,
                         color: Colors.black,
           );
-          var smallStyle = GoogleFonts.poppins(
+          var smallStyle = GoogleFonts.aBeeZee(
             fontSize: 14,
             fontWeight: FontWeight.w500,
                         color: Colors.black38

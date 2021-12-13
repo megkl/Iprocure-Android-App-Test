@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Padding(
                 padding: EdgeInsets.all(20),
                 child: Text("Create new",
-                    style: TextStyle(color: Colors.amber, fontSize: 16)),
+                    style: TextStyle(color: Colors.amber, fontSize: 18)),
               ),
             )
           ],
