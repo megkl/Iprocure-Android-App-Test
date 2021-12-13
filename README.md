@@ -1,16 +1,16 @@
 # iprocure_app
 
-A new Flutter project.
+Introduction
 
-## Getting Started
+Iprocure app is a flutter e-commerce that displays a list of products that have been added by users, hence various users can add the products which are displayed accordingly. One can also view the details of the products since not all details can be captured on the product list page. It allows users to upload specific images for a product and also select which category it will grouped it. It offers easier navigation with the categories which allows one to narrow down the products. The UI is very user-friendly allowing the user to access every element with ease.
 
-This project is a starting point for a Flutter application.
+Below are screenshots of the various pages of the applications:
 
-A few resources to get you started if this is your first Flutter project:
+UNIT TESTS
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Product List Feature
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Requirement: The product list page should display a list of products from our local db. Each product should show at least its product name and cost
+
+Actions: Mocking data models and classes by removing dependencies. Hardcode values for getproductList and not retrieve from database so that we can see how slow and unpredictable it will be:
+
