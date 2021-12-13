@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 var headerNotesStyle = GoogleFonts.poppins(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.w500,
                         color: Colors.grey,
+          );
+          var nameStyle = GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+                        color: Colors.black,
           );
           var smallStyle = GoogleFonts.poppins(
             fontSize: 14,
@@ -27,4 +32,4 @@ var headerNotesStyle = GoogleFonts.poppins(
             fontSize: 22,
             fontWeight: FontWeight.w700,
             color: Color(0xffe46b10),
-          
+          );

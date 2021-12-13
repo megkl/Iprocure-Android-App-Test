@@ -200,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Stack(
             children: <Widget>[
               Padding(
-                  padding: EdgeInsets.only(right: 350, top: 30),
+                  padding: EdgeInsets.only(right: 250, top: 30),
                   child: Image.asset("assets/logo.png")),
               _buildDescription(context, position),
             ],
@@ -228,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   Text(
                       "${"(${this.productList[position].productCode})" + " - " + this.productList[position].productName + " - " + this.productList[position].quantity.toString() + this.productList[position].quantityTypeName}",
-                      style: listTitle),
+                      style: nameStyle),
                   Row(children: <Widget>[
                     Text(this.productList[position].manufacturerName,
                         style: headerNotesStyle)
@@ -246,7 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      Text("${this.productList[position].distributorName}",
+                      Text("Distributor Name: ${this.productList[position].distributorName}",
                           style: smallStyle)
                     ],
                   ),
