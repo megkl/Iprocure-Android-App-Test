@@ -2,7 +2,7 @@
 
 Introduction
 
-Iprocure app is a flutter e-commerce that displays a list of products that have been added by users, hence various users can add the products which are displayed accordingly. One can also view the details of the products since not all details can be captured on the product list page. It allows users to upload specific images for a product and also select which category it will grouped it. It offers easier navigation with the categories which allows one to narrow down the products. The UI is very user-friendly allowing the user to access every element with ease.
+Iprocure app is a flutter e-commerce that displays a list of products that have been added by users, hence various users can add the products which are displayed accordingly. It allows users to upload specific images for a product and also select which category it will grouped it. It offers easier navigation with the categories which allows one to narrow down the products through the filter and search features. The UI is very user-friendly allowing the user to access every element with ease.
 
 Below are screenshots of the various pages of the applications:
 
