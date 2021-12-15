@@ -733,7 +733,7 @@ Widget productImage() {
     showDialog(context: context, builder: (_) => alertDialog);
   }
 
- void getImage(ImageSource imageSource) async {
+  void getImage(ImageSource imageSource) async {
 
    PickedFile _imageFile = await picker.getImage(source: imageSource);
     if (_imageFile == null) return;
