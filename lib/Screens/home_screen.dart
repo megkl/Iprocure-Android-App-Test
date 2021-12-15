@@ -201,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               Padding(
                   padding: EdgeInsets.only(right: 250, top: 30),
-                  child: Image.asset("assets/logo.png")),
+                  child: Image.file(File(productList[position].productImage))),
               _buildDescription(context, position),
             ],
           ),

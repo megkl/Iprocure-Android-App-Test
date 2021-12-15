@@ -1,5 +1,5 @@
+import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:iprocure_app/Models/category_model.dart';
@@ -9,6 +9,7 @@ import 'package:iprocure_app/widgets/constants.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:path/path.dart' as path;
 
 class AddProductScreen extends StatefulWidget {
   const AddProductScreen({Key key}) : super(key: key);
@@ -732,14 +733,14 @@ Widget productImage() {
   }
 
  void getImage(ImageSource imageSource) async {
+
    PickedFile _imageFile = await picker.getImage(source: imageSource);
     if (_imageFile == null) return;
 
     File tmpFile = File(_imageFile.path);
-    //final appDir = await getApplicationDocumentsDirectory();
-    final fileName = _imageFile.path;
-
-    tmpFile = await tmpFile.copy('$fileName');
+    final appDir = await getApplicationDocumentsDirectory();
+    final fileName = path.basename(_imageFile.path);
+    tmpFile = await tmpFile.copy('${appDir.path}/$fileName');
 
     setState(() {
       _image = tmpFile;
