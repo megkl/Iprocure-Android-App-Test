@@ -1,4 +1,7 @@
-#Wed Dec 15 11:54:33 EAT 2021
+#Wed Dec 15 12:57:11 EAT 2021
 base.0=D\:\\meg\\iprocure\\iProcureApp\\iprocure_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.1=classes2.dex
+renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
+base.1=D\:\\meg\\iprocure\\iProcureApp\\iprocure_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes2.dex
