@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:iprocure_app/Models/category_model.dart';
 import 'package:iprocure_app/Models/product_model.dart';
+import 'package:iprocure_app/Screens/home_screen.dart';
 import 'package:iprocure_app/helper/database_helper.dart';
 import 'package:iprocure_app/widgets/constants.dart';
 import 'package:path_provider/path_provider.dart';
@@ -45,6 +46,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   static var quantityTypeList = ['g', 'Kg', 'Tonnes'];
   String categorySelectedValue = 'Cereal Seeds';
   static var categoryList = ['Cereal Seeds', 'Minerals', 'Equipment'];
+  List<Product> productList;
   int count = 0;
 
   @override
@@ -701,7 +703,6 @@ Widget productImage() {
 
   void _save(product) async {
     moveToLastScreen();
-
     //product.date = DateFormat.yMMMd().format(DateTime.now());
     int result;
 
@@ -721,7 +722,7 @@ Widget productImage() {
   }
 
   void moveToLastScreen() {
-    Navigator.pop(context, true);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
   }
 
   void _showAlertDialog(String title, String message) {

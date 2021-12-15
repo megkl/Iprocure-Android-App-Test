@@ -210,8 +210,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fit: BoxFit.contain
                                 )),
                   )),
-              //child: Image.file(File(productList[position].productImage))
-
               _buildDescription(context, position),
             ],
           ),
