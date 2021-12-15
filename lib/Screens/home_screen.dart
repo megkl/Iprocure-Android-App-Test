@@ -137,7 +137,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   dbHelper.initializeDatabase();
                               dbFuture.then((database) {
                                 Future<List<Product>> productListFuture =
-                                    dbHelper.getCategoryList(categoryList[index]);
+                                    dbHelper
+                                        .getCategoryList(categoryList[index]);
                                 productListFuture.then((productList) {
                                   setState(() {
                                     this.productList = productList;
@@ -200,8 +201,17 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Stack(
             children: <Widget>[
               Padding(
-                  padding: EdgeInsets.only(right: 250, top: 30),
-                  child: Image.file(File(productList[position].productImage))),
+                  padding: EdgeInsets.only(right: 250, top: 20),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: FileImage(
+                                File(productList[position].productImage)),
+                                fit: BoxFit.contain
+                                )),
+                  )),
+              //child: Image.file(File(productList[position].productImage))
+
               _buildDescription(context, position),
             ],
           ),
@@ -218,10 +228,11 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 200,
             padding: EdgeInsets.all(12),
             decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
-                ),),
+              color: Colors.white,
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),
+            ),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -239,14 +250,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text('Ksh ', style: listTitle),
                       Text(this.productList[position].unitCost.toString(),
                           style: listTitle),
-                      Text(" per unit",
-                          style: smallStyle)
+                      Text(" per unit", style: smallStyle)
                     ],
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      Text("Distributor Name: ${this.productList[position].distributorName}",
+                      Text(
+                          "Distributor Name: ${this.productList[position].distributorName}",
                           style: smallStyle)
                     ],
                   ),
