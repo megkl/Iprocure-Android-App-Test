@@ -731,15 +731,15 @@ Widget productImage() {
     showDialog(context: context, builder: (_) => alertDialog);
   }
 
- void getImage(ImageSource imageSource) async {
+  void getImage(ImageSource imageSource) async {
+
    PickedFile _imageFile = await picker.getImage(source: imageSource);
     if (_imageFile == null) return;
 
     File tmpFile = File(_imageFile.path);
-    //final appDir = await getApplicationDocumentsDirectory();
-    final fileName = _imageFile.path;
-
-    tmpFile = await tmpFile.copy('$fileName');
+    final appDir = await getApplicationDocumentsDirectory();
+    final fileName = path.basename(_imageFile.path);
+    tmpFile = await tmpFile.copy('${appDir.path}/$fileName');
 
     setState(() {
       _image = tmpFile;
